@@ -17,7 +17,7 @@ Cada pasta contém o seu próprio **README.md** com instruções específicas de
 - **Parte 2** → API em memória com CRUD e documentação OpenAPI.  
 - **Parte 3** → API code-first ligada a MySQL, backoffice React-Admin e deploy com Docker Compose.  
 
-## 📖 Relatórios
+## Relatórios
 Cada parte possui um relatório próprio (`/relatorio/`) com explicação, prints e conclusões.  
 
 ---
