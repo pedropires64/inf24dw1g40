@@ -1,0 +1,37 @@
+{
+  "info": {
+    "name": "Parte 3 - API LoopBack (basic)",
+    "_postman_id": "p3-basic-collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users - List",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3001/users"
+      }
+    },
+    {
+      "name": "Venues - List",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3001/venues"
+      }
+    },
+    {
+      "name": "Events - List",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3001/events"
+      }
+    },
+    {
+      "name": "Tickets - List",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3001/tickets"
+      }
+    }
+  ]
+}

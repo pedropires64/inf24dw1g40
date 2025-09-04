@@ -1,0 +1,23 @@
+{
+  "name": "api-loopback",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Parte 3 - API LoopBack REST - Gest\u00e3o de Eventos",
+  "scripts": {
+    "prestart": "npm run build",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --transpile-only --respawn src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@loopback/rest": "^12.0.5",
+    "@loopback/rest-explorer": "^5.0.6",
+    "mysql2": "^3.11.3",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.4",
+    "@types/node": "^20"
+  }
+}

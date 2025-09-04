@@ -1,0 +1,50 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8
+    container_name: p3-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: eventosdb
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./api-loopback/db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p12345678"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./api-loopback
+      dockerfile: Dockerfile
+    container_name: p3-api
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASS: 12345678
+      DB_NAME: eventosdb
+      PORT: 3001
+      NODE_ENV: production
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "3001:3001"
+
+  admin:
+    build:
+      context: ./admin-react
+      dockerfile: Dockerfile
+    container_name: p3-admin
+    environment:
+      PORT: 3002
+    depends_on:
+      - api
+    ports:
+      - "3002:3002"
+
+volumes:
+  dbdata:
