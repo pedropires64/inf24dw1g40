@@ -1,0 +1,379 @@
+{
+	"info": {
+		"_postman_id": "99fdde42-220b-4453-a018-939317bbcc39",
+		"name": "Google Drive API – AC M1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30471548",
+		"_collection_link": "https://www.postman.com/orange-rocket-54344/workspace/postman-driveapi/collection/30471548-99fdde42-220b-4453-a018-939317bbcc39?action=share&source=collection_link&creator=30471548"
+	},
+	"item": [
+		{
+			"name": "Listar Ficheiros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/drive/v3/files?fields=files(id,name,mimeType,parents)",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drive",
+						"v3",
+						"files"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "files(id,name,mimeType,parents)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter detalhes de ficheiro",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/drive/v3/files/{{fileId}}?fields=files(id,name,mimeType,parents,webViewLink)",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drive",
+						"v3",
+						"files",
+						"{{fileId}}"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "files(id,name,mimeType,parents,webViewLink)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Pasta",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"AC_M1_Demo\",\r\n  \"mimeType\": \"application/vnd.google-apps.folder\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/drive/v3/files?Content-Type=application/json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drive",
+						"v3",
+						"files"
+					],
+					"query": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload de ficheiro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "metadata",
+							"value": "{\"name\":\"exemplo.txt\",\"parents\":[\"{{folderId}}\"]}",
+							"contentType": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Rodrigo/Desktop/New folder/1.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{upload_base}}/drive/v3/files?uploadType=multipart",
+					"host": [
+						"{{upload_base}}"
+					],
+					"path": [
+						"drive",
+						"v3",
+						"files"
+					],
+					"query": [
+						{
+							"key": "uploadType",
+							"value": "multipart"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar metadados / renomear",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"novo_nome.txt\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/drive/v3/files/{{fileId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drive",
+						"v3",
+						"files",
+						"{{fileId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Partilhar (criar permissão) — mostra relação N-N",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"role\": \"writer\",\r\n  \"type\": \"user\",\r\n  \"emailAddress\": \"8@gmail.com\",\r\n  \"sendNotificationEmail\": false\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/drive/v3/files/{{fileId}}/permissions",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drive",
+						"v3",
+						"files",
+						"{{fileId}}",
+						"permissions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar permissões",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/drive/v3/files/{{fileId}}/permissions?fields=permissions(id,type,emailAddress,role)",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drive",
+						"v3",
+						"files",
+						"{{fileId}}",
+						"permissions"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "permissions(id,type,emailAddress,role)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exportar Google Doc para PDF",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/drive/v3/files/{{fileId}}/export?mimeType=application/pdf",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drive",
+						"v3",
+						"files",
+						"{{fileId}}",
+						"export"
+					],
+					"query": [
+						{
+							"key": "mimeType",
+							"value": "application/pdf"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Apagar ficheiro",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/drive/v3/files/{{fileId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drive",
+						"v3",
+						"files",
+						"{{fileId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "authRequestParams",
+				"value": [
+					{
+						"key": "access_type",
+						"value": "offline",
+						"enabled": true,
+						"send_as": "request_url"
+					},
+					{
+						"key": "prompt",
+						"value": "consent",
+						"enabled": true,
+						"send_as": "request_url"
+					}
+				],
+				"type": "any"
+			},
+			{
+				"key": "scope",
+				"value": "https://www.googleapis.com/auth/drive",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{vault:authorization-secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{vault:authorization-secret}}",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://oauth2.googleapis.com/token",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://accounts.google.com/o/oauth2/v2/auth",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
