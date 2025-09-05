@@ -1,10 +1,10 @@
-# 🎟️ Projeto de Gestão de Eventos
+# Projeto de Gestão de Eventos
 
 Este projeto foi desenvolvido no âmbito da unidade curricular, com o objetivo de criar uma aplicação completa de **gestão de eventos e bilhética**, com backend, frontend e base de dados integrados.
 
 ---
 
-## 📌 Estrutura do Projeto
+## Estrutura do Projeto
 - **Backend (Node.js + Express + MongoDB)**  
   - Implementação das entidades principais: `Users`, `Venues`, `Events`, `Tickets`.
   - Endpoints CRUD para cada entidade.
@@ -23,7 +23,7 @@ Este projeto foi desenvolvido no âmbito da unidade curricular, com o objetivo d
 
 ---
 
-## 🚀 Como Correr o Projeto
+## Como Correr o Projeto
 
 ### 1. Pré-requisitos
 - [Node.js](https://nodejs.org) (se quiseres correr fora do Docker)  
@@ -63,7 +63,7 @@ docker compose down
 
 ---
 
-## 📂 Estrutura de Pastas
+## Estrutura de Pastas
 ```
 parteX/
 │── backend/        # Código da API (Node.js/Express)
@@ -74,7 +74,7 @@ parteX/
 
 ---
 
-## ✅ Funcionalidades Implementadas
+## Funcionalidades Implementadas
 - CRUD completo para **Users**, **Venues**, **Events** e **Tickets**.
 - Documentação automática com **Swagger**.
 - Integração Frontend ↔ Backend ↔ Base de Dados.
@@ -83,14 +83,14 @@ parteX/
 
 ---
 
-## 📸 Demonstração
+## Demonstração
 - Prints do **Swagger** com endpoints visíveis.  
 - Prints de **chamadas GET/POST** no Swagger/Postman.  
 - Prints do **frontend a correr**.  
 
 ---
 
-## 👥 Autoria
-Projeto desenvolvido por **[Teu Nome]**, no âmbito da unidade curricular de [Nome da UC].
+## Autoria
+Projeto desenvolvido por Pedro Rodrigues e Rodrigo Araújo, no âmbito da unidade curricular de Desenvolvimento Web1.
 
 ---
